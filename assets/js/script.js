@@ -29,3 +29,9 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
+
+const randomIntegerArray = [];
+for(let i = 0; i < 5; i++) {
+  randomIntegerArray[i] = getRndInteger(1,50);
+}
+console.log(randomIntegerArray);
