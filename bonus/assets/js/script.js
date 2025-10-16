@@ -95,7 +95,18 @@ function validateInputs() {
       isValid = false;
       continue;
     }
+
+    // Verifica che sia un numero valido
+    if (isNaN(value) || !Number.isInteger(Number(value))) {
+      inputs[i].classList.add('is-invalid', 'border-danger', 'bg-danger-subtle');
+      errorMessage.textContent = 'Inserisci solo numeri interi!';
+      errorMessage.classList.remove('d-none');
+      isValid = false;
+      continue;
+    }
     
+    const numValue = Number(value);
+
     values.push(numValue);
   }
   
