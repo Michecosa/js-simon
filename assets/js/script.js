@@ -84,3 +84,15 @@ array_visualizer.innerText = randomIntegerArraySting;
 
 // Avvia il timer che, dopo 30 secondi, nasconde un elemento e mostra l'altro
 toggleElementsAfterDelay();
+
+// Funzione che prende e salva le risposte date in input in un array
+const userAnswers = [];
+
+function getAnswers() {
+  const inputs = document.querySelectorAll('#input-container input');
+  userAnswers.length = 0;
+
+  for (let i = 0; i < inputs.length; i++) {
+    userAnswers.push(inputs[i].value);
+  }
+}
