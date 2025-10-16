@@ -30,6 +30,26 @@ function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
+/**
+ * Nasconde un elemento e ne mostra un altro dopo 30 secondi.
+ * 
+ * @function toggleElementsAfterDelay
+ * @param {string} idToHide - L'ID dell'elemento da nascondere.
+ * @param {string} idToShow - L'ID dell'elemento da mostrare.
+ * @param {number} [30000] - Tempo di attesa in millisecondi (30 secondi)
+*/
+
+function toggleElementsAfterDelay() {
+  setTimeout(() => {
+    const idToHide = document.getElementById('array-container');
+    const idToShow = document.getElementById('input-container');
+
+    idToHide.classList.add('d-none');
+    idToShow.classList.remove('d-none');
+  }, 30000);
+}
+
+
 // Array di 5 numeri casuali da 1 a 50 (estremi inclusi)
 const randomIntegerArray = [];
 for(let i = 0; i < 5; i++) {
