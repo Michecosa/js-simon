@@ -118,15 +118,41 @@ button.addEventListener('click', (event) => {
   event.preventDefault();
   getAnswers();
   checkAnswers(userAnswers, randomIntegerArray);
-  console.log(`
-    I tuoi numeri:        [${userAnswers}]
-    I numeri corretti:    [${randomIntegerArray}]
 
-    Hai indovinato ${correctNumbers.length} numeri
-  `);
-  if(correctNumbers.length > 0) {
-    console.log(`
-    I numeri indovinati sono [${correctNumbers}]
-      `)
+
+  // Nascondo il container con gli input 
+  const idToHide = document.getElementById('input-container');
+  idToHide.classList.add('d-none');
+
+  // Scrivo il messaggio da mostrare in pagina
+  let output = "<p><strong>I tuoi numeri:</strong> [";
+  for (let i = 0; i < userAnswers.length; i++) {
+    output += userAnswers[i];
+    if (i < userAnswers.length - 1) output += ", ";
   }
+  output += "]</p>";
+
+  output += "<p><strong>I numeri corretti:</strong> [";
+  for (let i = 0; i < randomIntegerArray.length; i++) {
+    output += randomIntegerArray[i];
+    if (i < randomIntegerArray.length - 1) output += ", ";
+  }
+  output += "]</p>";
+
+  output += `<p><strong>Hai indovinato:</strong> ${correctNumbers.length} numero/i</p>`;
+
+  if (correctNumbers.length > 0) {
+    output += "<p><strong>I numeri indovinati:</strong> [";
+    for (let i = 0; i < correctNumbers.length; i++) {
+      output += correctNumbers[i];
+      if (i < correctNumbers.length - 1) output += ", ";
+    }
+    output += "]</p>";
+  } else {
+    output += "<p><em>Nessun numero indovinato!</em></p>";
+  }
+
+  // Carico il messaggio nel suo contenitore
+  const results_container = document.getElementById('results-container');
+  results_container.innerHTML = output;
 })
