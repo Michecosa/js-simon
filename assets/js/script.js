@@ -30,8 +30,19 @@ function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
+// Array di 5 numeri casuali da 1 a 50 (estremi inclusi)
 const randomIntegerArray = [];
 for(let i = 0; i < 5; i++) {
   randomIntegerArray[i] = getRndInteger(1,50);
 }
-console.log(randomIntegerArray);
+
+// Salva array in una stringa per miglior gestione del formato visualizzato (separo dal for precedente solo per dare ordine al codice)
+let randomIntegerArraySting = "";
+for (let i = 0; i < 5; i++) {
+  randomIntegerArraySting += `${randomIntegerArray[i]}`;
+  if (i != 4) {
+    randomIntegerArraySting += " , ";
+  } else {
+    randomIntegerArraySting += " "
+  }
+}
