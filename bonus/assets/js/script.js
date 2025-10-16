@@ -107,6 +107,16 @@ function validateInputs() {
     
     const numValue = Number(value);
 
+    
+    // Verifica che sia nel range corretto (1-99)
+    if (numValue < 1 || numValue > 99) {
+      inputs[i].classList.add('is-invalid', 'border-danger', 'bg-danger-subtle');
+      errorMessage.textContent = 'I numeri devono essere compresi tra 1 e 99!';
+      errorMessage.classList.remove('d-none');
+      isValid = false;
+      continue;
+    }
+
     values.push(numValue);
   }
   
