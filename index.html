@@ -16,37 +16,36 @@
 </head>
 <body>
   <header>
-    <div class="m-4 text-center">
-      <h1>Simon says</h1>
-    </div>
   </header>
   <main>
-    <div class="text-center" id="array-container">
-      <div>
-        <h2>[ <span id="array-visualizer"> 0 , 0 , 0 , 0 , 0</span> ]</h2>
+    <div class="container border border-primary border-top-0 p-0 pb-5">
+      <div class="mt-4 p-4 text-center text-white bg-primary">
+        <h1>Simon says</h1>
       </div>
-
-      <h4 class="mt-5" id="countdown"> - - </h4>
-    </div>
-    
-    <div class="my-5"></div>
-
-    <form class="form-group">
-      <div id="input-container" class="d-none text-center container mt-3">
-        <div class="row justify-content-center">
-          <div class="col-sm-12 col-md-6 d-flex gap-3 mb-4">
-            <input type="number" id="input-1" class="form-control">
-            <input type="number" id="input-2" class="form-control">
-            <input type="number" id="input-3" class="form-control">
-            <input type="number" id="input-4" class="form-control">
-            <input type="number" id="input-5" class="form-control">
-          </div>
+      <div class="text-center mt-5" id="array-container">
+        <div>
+          <h2>[ <span id="array-visualizer"> 0 , 0 , 0 , 0 , 0</span> ]</h2>
         </div>
-        <button type="submit" class="btn btn-primary">Check My Memory</button>
+        <h4 class="mt-5" id="countdown"> - - </h4>
       </div>
-    </form>
 
-    <div id="results-container" class="text-center">
+      <form class="form-group">
+        <div id="input-container" class="d-none text-center container mt-3">
+          <div class="row justify-content-center">
+            <div class="col-sm-12 col-md-6 d-flex gap-3 my-4">
+              <input type="number" id="input-1" class="form-control">
+              <input type="number" id="input-2" class="form-control">
+              <input type="number" id="input-3" class="form-control">
+              <input type="number" id="input-4" class="form-control">
+              <input type="number" id="input-5" class="form-control">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Check My Memory</button>
+        </div>
+      </form>
+
+      <div id="results-container" class="text-center mt-5">
+      </div>
     </div>
   </main>
   <footer></footer>

@@ -62,10 +62,10 @@ function toggleElementsAfterDelay() {
 }
 
 
-// Array di 5 numeri casuali da 1 a 50 (estremi inclusi)
+// Array di 5 numeri casuali da 1 a 99 (estremi inclusi)
 const randomIntegerArray = [];
 for(let i = 0; i < 5; i++) {
-  randomIntegerArray[i] = getRndInteger(1,50);
+  randomIntegerArray[i] = getRndInteger(1,99);
 }
 
 // Salva array in una stringa per miglior gestione del formato visualizzato (separo dal for precedente solo per dare ordine al codice)
