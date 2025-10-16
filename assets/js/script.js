@@ -96,3 +96,11 @@ function getAnswers() {
     userAnswers.push(inputs[i].value);
   }
 }
+
+// Dopo il click del bottone, richiamo la funzione che salva le risposte nell'array
+const button = document.querySelector('button');
+
+button.addEventListener('click', (event) => {
+  event.preventDefault();
+  getAnswers();
+})
