@@ -16,7 +16,7 @@ function toggleElementsAfterDelay() {
   const idToShow = document.getElementById('input-container');
   const countdownEl = document.getElementById('countdown');
 
-  let timeLeft = 3;
+  let timeLeft = 30;
   countdownEl.textContent = `Tempo rimanente: ${timeLeft}s`;
 
   const countdownInterval = setInterval(() => {
@@ -116,7 +116,7 @@ function validateInputs() {
       isValid = false;
       continue;
     }
-    
+
     // Verifica duplicati
     if (values.includes(numValue)) {
       // Evidenzia anche l'input duplicato precedente
