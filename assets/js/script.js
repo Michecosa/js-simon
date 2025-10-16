@@ -22,6 +22,16 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 
 "...e appaiono invece 5 input in cui l'utente deve inserire i numeri"
   - remove("d-none")  -proprietà di classList-  per il contenitore degli input
+
+"Dopo che sono stati inseriti i 5 numeri.." :
+  - bottone per implementare eventListener al click, permettendo la lettura dei valori inseriti in input
+
+"il software dice quanti e quali dei numeri da indovinare sono stati individuati"
+  - salva i valori in input in un array
+  - usa include per il controllo di elementi in comune
+  - se trovato un elemento comune, viene salvato in un terzo array
+  - fare un .length per mostrare quanti numeri sono stati indovinati
+  - mostrare i valori presenti nel terzo array
 */
 
 
