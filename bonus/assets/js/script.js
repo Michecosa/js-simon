@@ -1,37 +1,7 @@
 /* 
-* Descrizione:
-Visualizzare in pagina 5 numeri casuali. Da lì parte un timer di 30 secondi.
-Dopo 30 secondi i numeri scompaiono e appaiono invece 5 input in cui l'utente deve inserire i numeri che ha visto precedentemente, nell'ordine che preferisce.
-
-Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati. 
-*/
-
-
-/* 
-* INTERPRETAZIONE DEI REQUISITI *
-"5 numeri casuali" :
-  - funzione Math.random (con min e max)
-  - ciclo for per ripetere la funzione Math.random 5 volte
-  - salvare i valori generati in un array
-
-"timer di 30 secondi" :
-  - timing function : setTimeout 
-
-"Dopo 30 secondi i numeri scompaiono..." : (cosa effettuare al termine del timer)
-  - add("d-none")  -proprietà di classList-  per il contenitore degli array visualizzati in pagina
-
-"...e appaiono invece 5 input in cui l'utente deve inserire i numeri"
-  - remove("d-none")  -proprietà di classList-  per il contenitore degli input
-
-"Dopo che sono stati inseriti i 5 numeri.." :
-  - bottone per implementare eventListener al click, permettendo la lettura dei valori inseriti in input
-
-"il software dice quanti e quali dei numeri da indovinare sono stati individuati"
-  - salva i valori in input in un array
-  - usa include per il controllo di elementi in comune
-  - se trovato un elemento comune, viene salvato in un terzo array
-  - fare un .length per mostrare quanti numeri sono stati indovinati
-  - mostrare i valori presenti nel terzo array
+* BONUS:
+Inseriamo la validazione: se l'utente mette due numeri uguali o inserisce cose diverse da numeri lo blocchiamo in qualche modo.
+Se l’utente ha inserito qualcosa di non valido, segnaliamolo visivamente nel form.
 */
 
 
@@ -46,7 +16,7 @@ function toggleElementsAfterDelay() {
   const idToShow = document.getElementById('input-container');
   const countdownEl = document.getElementById('countdown');
 
-  let timeLeft = 30;
+  let timeLeft = 3;
   countdownEl.textContent = `Tempo rimanente: ${timeLeft}s`;
 
   const countdownInterval = setInterval(() => {
@@ -61,14 +31,13 @@ function toggleElementsAfterDelay() {
   }, 1000);
 }
 
-
 // Array di 5 numeri casuali da 1 a 99 (estremi inclusi)
 const randomIntegerArray = [];
 for(let i = 0; i < 5; i++) {
   randomIntegerArray[i] = getRndInteger(1,99);
 }
 
-// Salva array in una stringa per miglior gestione del formato visualizzato (separo dal for precedente solo per dare ordine al codice)
+// Salva array in una stringa per miglior gestione del formato visualizzato
 let randomIntegerArraySting = "";
 for (let i = 0; i < 5; i++) {
   randomIntegerArraySting += `${randomIntegerArray[i]}`;
@@ -82,7 +51,6 @@ for (let i = 0; i < 5; i++) {
 // Mostra l'array in pagina
 const array_visualizer = document.getElementById('array-visualizer');
 array_visualizer.innerText = randomIntegerArraySting;
-
 
 // Avvia il timer che, dopo 30 secondi, nasconde un elemento e mostra l'altro
 toggleElementsAfterDelay();
@@ -99,9 +67,45 @@ function getAnswers() {
   }
 }
 
+// Funzione di validazione degli input
+function validateInputs() {
+  const inputs = document.querySelectorAll('#input-container input');
+  const errorMessage = document.getElementById('error-message');
+  let isValid = true;
+  const values = [];
+  
+  // Reset degli stili di errore (usando classi Bootstrap)
+  inputs.forEach(input => {
+    input.classList.remove('is-invalid');
+    input.classList.remove('border-danger');
+    input.classList.remove('bg-danger-subtle');
+  });
+  errorMessage.classList.add('d-none');
+  errorMessage.textContent = '';
+
+  // Controlla ogni input
+  for (let i = 0; i < inputs.length; i++) {
+    const value = inputs[i].value.trim();
+    
+    // Verifica che il campo non sia vuoto
+    if (value === '') {
+      inputs[i].classList.add('is-invalid', 'border-danger', 'bg-danger-subtle');
+      errorMessage.textContent = 'Tutti i campi devono essere compilati!';
+      errorMessage.classList.remove('d-none');
+      isValid = false;
+      continue;
+    }
+    
+    values.push(numValue);
+  }
+  
+  return isValid;
+}
+
 // Funzione che confronta i valori inseriti con i valori corretti
 const correctNumbers = [];
 function checkAnswers(arr1, arr2) {
+  correctNumbers.length = 0;
   let count = 0;
   for (let i=0; i<arr1.length; i++) {
     for (let j=0; j<arr2.length; j++) {
@@ -113,14 +117,19 @@ function checkAnswers(arr1, arr2) {
   }
 }
 
-// Dopo il click del bottone, richiamo la funzione che salva le risposte nell'array
+// Dopo il click del bottone, valida e processa le risposte
 const button = document.querySelector('button');
 
 button.addEventListener('click', (event) => {
   event.preventDefault();
+  
+  // Valida gli input prima di procedere
+  if (!validateInputs()) {
+    return; // Blocca l'esecuzione se la validazione fallisce
+  }
+  
   getAnswers();
   checkAnswers(userAnswers, randomIntegerArray);
-
 
   // Nascondo il container con gli input 
   const idToHide = document.getElementById('input-container');
@@ -157,4 +166,4 @@ button.addEventListener('click', (event) => {
   // Carico il messaggio nel suo contenitore
   const results_container = document.getElementById('results-container');
   results_container.innerHTML = output;
-})
+});
