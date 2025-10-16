@@ -40,23 +40,25 @@ function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
-/**
- * Nasconde un elemento e ne mostra un altro dopo 30 secondi.
- * 
- * @function toggleElementsAfterDelay
- * @param {string} idToHide - L'ID dell'elemento da nascondere.
- * @param {string} idToShow - L'ID dell'elemento da mostrare.
- * @param {number} [30000] - Tempo di attesa in millisecondi (30 secondi)
-*/
-
+// Funzione che nasconde un elemento e ne mostra un altro dopo 30 secondi.
 function toggleElementsAfterDelay() {
-  setTimeout(() => {
-    const idToHide = document.getElementById('array-container');
-    const idToShow = document.getElementById('input-container');
+  const idToHide = document.getElementById('array-container');
+  const idToShow = document.getElementById('input-container');
+  const countdownEl = document.getElementById('countdown');
 
-    idToHide.classList.add('d-none');
-    idToShow.classList.remove('d-none');
-  }, 30000);
+  let timeLeft = 30;
+  countdownEl.textContent = `Tempo rimanente: ${timeLeft}s`;
+
+  const countdownInterval = setInterval(() => {
+    timeLeft--;
+    countdownEl.textContent = `Tempo rimanente: ${timeLeft}s`;
+
+    if (timeLeft <= 0) {
+      clearInterval(countdownInterval);
+      idToHide.classList.add('d-none');
+      idToShow.classList.remove('d-none');
+    }
+  }, 1000);
 }
 
 
