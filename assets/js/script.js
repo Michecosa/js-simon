@@ -23,3 +23,9 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 "...e appaiono invece 5 input in cui l'utente deve inserire i numeri"
   - remove("d-none")  -proprietà di classList-  per il contenitore degli input
 */
+
+
+// Funzione per generare numeri casuali
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
