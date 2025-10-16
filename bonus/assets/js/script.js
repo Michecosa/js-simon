@@ -116,7 +116,21 @@ function validateInputs() {
       isValid = false;
       continue;
     }
-
+    
+    // Verifica duplicati
+    if (values.includes(numValue)) {
+      // Evidenzia anche l'input duplicato precedente
+      for (let j = 0; j < i; j++) {
+        if (Number(inputs[j].value) === numValue) {
+          inputs[j].classList.add('is-invalid', 'border-danger', 'bg-danger-subtle');
+        }
+      }
+      inputs[i].classList.add('is-invalid', 'border-danger', 'bg-danger-subtle');
+      errorMessage.textContent = 'Non puoi inserire numeri duplicati!';
+      errorMessage.classList.remove('d-none');
+      isValid = false;
+    }
+    
     values.push(numValue);
   }
   
