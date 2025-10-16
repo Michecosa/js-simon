@@ -46,3 +46,7 @@ for (let i = 0; i < 5; i++) {
     randomIntegerArraySting += " "
   }
 }
+
+// Mostra l'array in pagina
+const array_visualizer = document.getElementById('array-visualizer');
+array_visualizer.innerText = randomIntegerArraySting;
