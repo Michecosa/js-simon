@@ -93,7 +93,7 @@ function getAnswers() {
   userAnswers.length = 0;
 
   for (let i = 0; i < inputs.length; i++) {
-    userAnswers.push(inputs[i].value);
+    userAnswers.push(Number(inputs[i].value));
   }
 }
 
@@ -103,4 +103,6 @@ const button = document.querySelector('button');
 button.addEventListener('click', (event) => {
   event.preventDefault();
   getAnswers();
+  console.log(userAnswers);
+  console.log(randomIntegerArray)
 })
