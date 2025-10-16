@@ -97,12 +97,36 @@ function getAnswers() {
   }
 }
 
+// Funzione che confronta i valori inseriti con i valori corretti
+const correctNumbers = [];
+function checkAnswers(arr1, arr2) {
+  let count = 0;
+  for (let i=0; i<arr1.length; i++) {
+    for (let j=0; j<arr2.length; j++) {
+      if(arr1[i]===arr2[j]) {
+        correctNumbers[count] = arr1[i];
+        count++;
+      }
+    }
+  }
+}
+
 // Dopo il click del bottone, richiamo la funzione che salva le risposte nell'array
 const button = document.querySelector('button');
 
 button.addEventListener('click', (event) => {
   event.preventDefault();
   getAnswers();
-  console.log(userAnswers);
-  console.log(randomIntegerArray)
+  checkAnswers(userAnswers, randomIntegerArray);
+  console.log(`
+    I tuoi numeri:        [${userAnswers}]
+    I numeri corretti:    [${randomIntegerArray}]
+
+    Hai indovinato ${correctNumbers.length} numeri
+  `);
+  if(correctNumbers.length > 0) {
+    console.log(`
+    I numeri indovinati sono [${correctNumbers}]
+      `)
+  }
 })
